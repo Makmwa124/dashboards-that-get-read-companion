@@ -1,0 +1,22 @@
+Dashboards That Get Read - Chapter 11 Tableau calculated fields
+
+Set the date field's Default Properties > Fiscal Year Start to July.
+Relate Orders to Targets on Region and on DATETRUNC('month', [Order Date]) = [Month].
+
+// Gross Margin %
+(SUM([Revenue]) - SUM([Cost])) / SUM([Revenue])
+
+// Revenue vs Target %
+(SUM([Revenue]) - SUM([Revenue Target])) / SUM([Revenue Target])
+
+// Revenue LY (table calc: needs the previous 12 months in view)
+LOOKUP(SUM([Revenue]), -12)
+
+// Below Threshold  (put on Color; True = #C8102E, False = #BDBDBD)
+[Revenue vs Target %] < -0.05
+
+// Highlight WA (Chapter 6)
+[Region] = "WA"
+
+// Data As At
+{ FIXED : MAX([Order Date]) }

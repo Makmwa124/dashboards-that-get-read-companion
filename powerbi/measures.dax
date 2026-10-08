@@ -1,0 +1,47 @@
+// Dashboards That Get Read - Chapter 11 DAX measures for the Coastline model
+// Tables: Orders, Targets, Date (marked as date table), Region
+
+Date =
+ADDCOLUMNS (
+    CALENDAR ( DATE ( 2024, 7, 1 ), DATE ( 2026, 6, 30 ) ),
+    "Month", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 ),
+    "FY", YEAR ( [Date] ) + IF ( MONTH ( [Date] ) >= 7, 1, 0 )
+)
+
+// Calculated column on Date
+FY Label = "FY" & RIGHT ( 'Date'[FY], 2 )
+
+// Base measures
+Revenue = SUM ( Orders[revenue] )
+Gross Profit = SUM ( Orders[revenue] ) - SUM ( Orders[cost] )
+Gross Margin % = DIVIDE ( [Gross Profit], [Revenue] )
+Order Count = COUNTROWS ( Orders )
+Revenue Target = SUM ( Targets[revenue_target] )
+
+// Comparisons
+Revenue vs Target % = DIVIDE ( [Revenue] - [Revenue Target], [Revenue Target] )
+Revenue LY = CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+Revenue vs LY % = DIVIDE ( [Revenue] - [Revenue LY], [Revenue LY] )
+Revenue FYTD = TOTALYTD ( [Revenue], 'Date'[Date], "6/30" )
+Gross Margin LY = CALCULATE ( [Gross Margin %], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+Gross Margin pts vs LY = ( [Gross Margin %] - [Gross Margin LY] ) * 100
+
+// Design measures
+Variance Colour = IF ( [Revenue vs Target %] < -0.05, "#C8102E", "#BDBDBD" )
+
+Region Chart Title =
+VAR worst =
+    TOPN ( 1, VALUES ( Region[Region] ), [Revenue vs Target %], ASC )
+VAR worstName = MAXX ( worst, Region[Region] )
+VAR worstVar = MAXX ( worst, [Revenue vs Target %] )
+RETURN
+    IF (
+        worstVar < -0.05,
+        worstName & " is " & FORMAT ( -worstVar, "0%" )
+            & " under target",
+        "All regions within 5% of target"
+    )
+
+Data As At = "Data to " & FORMAT ( MAX ( Orders[order_date] ), "d mmm yyyy" )
+
+// Expected results on the companion data: run code/chapters/ch11_check_dax.py
