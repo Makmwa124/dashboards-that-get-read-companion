@@ -34,8 +34,8 @@ For Power BI, load the CSV files, import `powerbi/coastline_theme.json` (Design 
 
 ## Get the book
 
-- Paperback and Kindle: search for *Dashboards That Get Read* by Mathew Kariuki on Amazon
-- PDF bundle with these files and a cheat sheet: [mathewkariuki.gumroad.com](https://mathewkariuki.gumroad.com)
+- **eBook + practice files (PDF bundle with a cheat sheet):** [mathewkariuki.gumroad.com/l/dashboards-that-get-read](https://mathewkariuki.gumroad.com/l/dashboards-that-get-read)
+- **Paperback and Kindle:** coming soon on Amazon
 
 ## About
 
