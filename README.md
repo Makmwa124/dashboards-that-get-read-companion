@@ -40,3 +40,15 @@ For Power BI, load the CSV files, import `powerbi/coastline_theme.json` (Design 
 ## About
 
 Coastline Outfitters and all the people in its examples are fictional, and the data is generated. The files in this repository are free to use for learning. The book is © 2026 Mathew Kariuki.
+
+
+## Free lessons that go with this book
+
+Build the charts and dashboards from the book step by step, with free notebooks and data, on [Mathew K Analytics](https://www.mathewkanalytics.com/):
+
+- [Data visualisation with Matplotlib](https://www.mathewkanalytics.com/lessons/data-analytics-zero-to-hero/013-data-visualization-with-matplotlib/)
+- [Beautiful charts with Seaborn](https://www.mathewkanalytics.com/lessons/data-analytics-zero-to-hero/014-data-visualization-with-seaborn/)
+- [Build a Streamlit dashboard in Python](https://www.mathewkanalytics.com/lessons/data-analytics-zero-to-hero/015-building-a-streamlit-dashboard/)
+- [Storytelling with data](https://www.mathewkanalytics.com/lessons/data-analytics-zero-to-hero/027-storytelling-with-data/)
+- [Data Visualisation in Python course](https://www.mathewkanalytics.com/series/data-visualisation-in-python/)
+- [Free cheat sheets](https://www.mathewkanalytics.com/cheat-sheets/)
